@@ -4,15 +4,24 @@ html {
 }
 
 body {
-    margin: 0 0 280px;
+    margin: 0 0 123px;
 }
 
-.footer{
+.footer {
+	height: 70px;
 	position: absolute;
 	bottom: 0;
 	width: 100%;
     	background-color: rgb(173, 171, 171);
     	color: rgb(90, 83, 83);
+}
+
+.card-body {
+	height: 175px;
+}
+
+.navbar-custom {
+	background-color: rgb(194, 56, 56) !important;
 }
 
 
