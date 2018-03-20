@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stevens Study Plan Generator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet">
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-default navbar-dark bg-dark">
+		<a class="navbar-brand"><h3 class="text-light">Stevens Study Plan Generator</h3></a>
+	</nav>
+	</br>
+	<form id="form1">
+		<div class="container">    
+			<div class="row">
+				<div class="col-sm">
+					<div class="card">
+					  <div class="card-header">
+						<h4>Step 1</h4>
+					  </div>
+					  <div class="card-body">
+						<h5 class="card-title">Select Major</h5>
+						  <div class="form-group">
+							<label for="formMajor">Major</label>
+							<select class="form-control" id="formMajor">
+							  <option value="CPE2017">Computer Engineer Entering 2017</option>
+							  <option value="EE2017">Electrical Engineer Entering 2017</option>
+							</select>
+						  </div>
+					  </div>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="card">
+					  <div class="card-header">
+						<h4>Step 2</h4>
+					  </div>
+					  <div class="card-body">
+						<h5 class="card-title">Upload Transcript</h5>
+						  <div class="form-group">
+							<label for="formTranscript">Transcript Text File</label>
+							<input type="file" class="form-control-file" id="formTranscript">
+						  </div>
+					  </div>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="card">
+					  <div class="card-header">
+						<h4>Step 3</h4>
+					  </div>
+					  <div class="card-body">
+						<h5 class="card-title">Select Classes</h5>
+						  <div class="form-group">
+							<label for="formSubmit">Select Classes below</label>
+							<button onclick= "postClasses()" type="button" class="btn btn-primary" id="formSubmit">Submit</button>
+						  </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+			</br>
+			<div class="row">
+				<div class="col-sm">
+					<div class="form-group">
+						<label for="formHumanity1">Humanities</label>
+						<input type="text" class="form-control" id="formHumanity1">
+						<label for="formMajor">Term</label>
+						<select class="form-control" id="formHumanity1Term">
+						  <option value="1">I</option>
+						  <option value="2">II</option>
+						  <option value="3" selected>III</option>
+						  <option value="4">IV</option>
+						  <option value="5">V</option>
+						  <option value="6">VI</option>
+						  <option value="7">VII</option>
+						  <option value="8">VIII</option>
+						  <option value="0">Taken</option>
+						</select>
+						<label for="formHumanity2">Humanities</label>
+						<input type="text" class="form-control" id="formHumanity2">
+						<label for="formHumanity3">Humanities</label>
+						<input type="text" class="form-control" id="formHumanity3">
+						<label for="formHumanity4">Humanities</label>
+						<input type="text" class="form-control" id="formHumanity4">
+						<label for="formGeneral1">General Elective</label>
+						<input type="text" class="form-control" id="formGeneral1">
+						<label for="formGeneral2">General Elective</label>
+						<input type="text" class="form-control" id="formGeneral2">
+					 </div>
+				</div>
+				<div class="col-sm">
+					<div class="form-group">
+						<label for="formScience1">Science Elective</label>
+						<input type="text" class="form-control" id="formScience1">
+						<label for="formLab">Science Lab</label>
+						<input type="text" class="form-control" id="formLab">
+						<label for="formScience2">Science Elective</label>
+						<input type="text" class="form-control" id="formScience2">
+						<label for="formTechnical1">Technical Elective</label>
+						<input type="text" class="form-control" id="formTechnical1">
+						<label for="formTechnical2">Technical Elective</label>
+						<input type="text" class="form-control" id="formTechnical2">
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="form-group">
+						<label for="formExtra1">Extra Class</label>
+						<input type="text" class="form-control" id="formExtra1">
+						<label for="formExtra2">Extra Class</label>
+						<input type="text" class="form-control" id="formExtra2">
+						<label for="formExtra3">Extra Class</label>
+						<input type="text" class="form-control" id="formExtra3">
+						<label for="formExtra4">Extra Class</label>
+						<input type="text" class="form-control" id="formExtra4">
+						<label for="formExtra5">Extra Class</label>
+						<input type="text" class="form-control" id="formExtra5">
+						<label for="formExtra6">Extra Class</label>
+						<input type="text" class="form-control" id="formExtra6">
+					 </div>
+				</div>
+			</div>
+		</div>
+	</form>
+		
+	<footer class="footer">
+		<div class="text-center">Created by Danny Pinto, David Heale, Gina Schnecker, and Alex Walker</div>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script>
+		function postClasses() {
+			var tmp = $("#formHumanity1").val();
+			alert(tmp);
+		}
+	</script>
+  </body>
+</html>
