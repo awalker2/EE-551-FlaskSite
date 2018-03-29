@@ -13,4 +13,4 @@ The course scrape file is there as progress towards checking if two classes have
 -make script a function
 -make it so the script can tell if the section is a lab or not (check for xxx-123[L][A-Z] instead of just xxx-123)
 
-With a group of three others, we will also be working on scraping data from a trsnscript, processing the courses taken and desired to check for potential time conflicts using previous offered times, and writting the courses to the end goal of the generated pdf study plan file.
+With a group of three others, we will also be working on scraping data from a transcript, processing the courses taken and desired to check for potential time conflicts using previous offered times, and writting the courses to the end goal of the generated pdf study plan file.
