@@ -1,29 +1,6 @@
 from flask import Flask, render_template, request
+import helperFunctions as helper
 app = Flask(__name__)
-
-def addDictToCourseList(number, key, classes, dictionary):
-    for x in range (1, number+1):
-        try:
-            term = int(dictionary[key+str(x)+"Term"])
-            course = str(dictionary[key+str(x)])
-            if (course):
-                classes[int(term)].append(course)
-        except:
-            print "Error appending with key: " + key+str(x) + "/Term"
-
-def addListToCourseList(classList, classes):
-    for x in range (0, len(classList), 2):
-        try:
-            course =  classList[x]
-            term = classList[x+1]
-            classes[term].append(course)
-        except:
-            print "Error appending course: " + classList[x] + " with term: " + classList[x+1]
-
-def standardizeInput(dictionary):
-    for value in dictionary:
-        dictionary[value] = dictionary[value].upper()
-        dictionary[value] = dictionary[value].replace("-"," ")
         
 @app.route("/")
 def main():
@@ -55,15 +32,15 @@ def generate():
             print major
 
     #Standardize the user input for courses
-    standardizeInput(dictionary)
+    helper.standardizeInput(dictionary)
 
     #Use function to add all courses to the list
-    addDictToCourseList(4, "formHumanity", classes, dictionary)
-    addDictToCourseList(2, "formGeneral", classes, dictionary)
-    addDictToCourseList(2, "formScience", classes, dictionary)
-    addDictToCourseList(1, "formScienceLab", classes, dictionary)
-    addDictToCourseList(4, "formTechnical", classes, dictionary)
-    addDictToCourseList(6, "formExtra", classes, dictionary)
+    helper.addDictToCourseList(4, "formHumanity", classes, dictionary)
+    helper.addDictToCourseList(2, "formGeneral", classes, dictionary)
+    helper.addDictToCourseList(2, "formScience", classes, dictionary)
+    helper.addDictToCourseList(1, "formScienceLab", classes, dictionary)
+    helper.addDictToCourseList(4, "formTechnical", classes, dictionary)
+    helper.addDictToCourseList(6, "formExtra", classes, dictionary)
 
     #Add in the required courses if CPE or EE
     if (major == "EE2017"):
@@ -94,7 +71,7 @@ def generate():
         return "Major invalid"
 
     #Add the required courses to the list
-    addListToCourseList(classList, classes)
+    helper.addListToCourseList(classList, classes)
 
     print classes
     return "success"
