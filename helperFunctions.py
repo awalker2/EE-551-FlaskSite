@@ -8,21 +8,33 @@ def twevleToTwentyFour(hours, meridiem):
         hours = 0
     return hours
     
-def courseScrape(key, lab, site):
+def courseScrape(key, site):
     data = url.urlopen(site).readlines()
 
     #Will have a full list in format: [course, lab or not, [time sublists]...]
     fullList = []
     timeList = []
     fullList.append(key)
-    fullList.append("Lab: " + str(lab))
 
+    #The HTML has an extra space for every character missing under 3
+    if re.search("[A-Z][A-Z][ ]", key):
+        key = key[:3] + " " + key[3:]
+    elif re.search("[A-Z][ ]", key):
+        key = key[:2] + "  " + key[2:]
+    print key
+    
     #Non lab sections can either be xxx-123L# or xxx-123L, labs must be xxx-123L+letter
-    if lab is False:
-        key = "(?:" + key + "(?!L)[A-Z]" + "|" + key + "[L][1-9 ]+" + ")"
-    else:
+    #Non recitation sections can either be xxx-123R# or xxx-123R, recitations must be xxx-123R+letter
+    if  key[-1:] == "L":
+        key = key[:-1]
         key = key + "[L][A-Z]"
-
+    elif key[-1:] == "R":
+        key = key[:-1]
+        key = key + "[R][A-Z]"
+    else:
+        #key = "(?=(?:(" + key + "(?!L)[A-Z]" + "|" + key + "[L][1-9 ]+" + "))?=(?:(" + key + "(?!R)[A-Z]" + "|" + key + "[R][1-9 ]+" +")))"
+        key = "(?:(?=" + key + "(?!L)[A-Z])("+ key + "(?!R)[A-Z])" + "|" + key + "[L][1-9 ]+" + ")"
+        
     found = False
     for line in data:
         if re.search(key, line):
@@ -113,3 +125,5 @@ def standardizeInput(dictionary):
     for value in dictionary:
         dictionary[value] = dictionary[value].upper()
         dictionary[value] = dictionary[value].replace("-"," ")
+
+courseScrape("D 110", "http://personal.stevens.edu/~gliberat/registrar/17s/17s_u.html")
