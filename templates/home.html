@@ -3,15 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Stevens Study Plan Generator</title>
+    <title>Stevens Automation Tools</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet">
   </head>
   
   <body>
-    <nav class="navbar navbar-default navbar-dark bg-dark navbar-custom">
-		<a class="navbar-brand"><h3 class="text-light">Stevens Study Plan Generator</h3></a>
-	</nav>
+	<nav class="navbar navbar-default navbar-dark bg-dark navbar-custom navbar-expand-lg">
+		<a class="navbar-brand"><h3 class="text-light">Stevens Automation Tools</h3></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+			  <a class="nav-link" href="/home"> Study Plan Generator <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="/home"> Automated Register <span class="sr-only">(current)</span></a>
+			</li>
+		  </ul>
+		</div>
+	  </nav>
+	
 	</br>
 	<form id="form1">
 		<div class="container">    
@@ -80,6 +94,8 @@
 							<input type="text" class="form-control" id="formGeneral1" name="formGeneral1">
 							<label for="formGeneral2">General Elective</label>
 							<input type="text" class="form-control" id="formGeneral2" name="formGeneral2">
+							<label for="formExtraRec1">Extra Recitation</label>
+							<input type="text" class="form-control" id="formExtraRec1" name="formExtraRec1">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="formHumanity1Term">Term</label>
@@ -154,6 +170,18 @@
 								<option value="8" selected>VIII</option>
 								<option value="0">Taken</option>
 							</select>
+							<label for="formExtraRec1Term">Term</label>
+							<select class="form-control" id="formExtraRec1Term" name="formExtraRec1Term">
+								<option value="1" selected>I</option>
+								<option value="2">II</option>
+								<option value="3">III</option>
+								<option value="4">IV</option>
+								<option value="5">V</option>
+								<option value="6">VI</option>
+								<option value="7">VII</option>
+								<option value="8">VIII</option>
+								<option value="0">Taken</option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -161,11 +189,37 @@
 					<div class="form-row">
 						<div class="form-group col-md-8">
 							<label for="formScience1">Science Elective</label>
-							<input type="text" class="form-control" id="formScience1" name="formScience1">
+							<select class="form-control" id="formScience1" name="formScience1">
+								<option value="CH 116" selected>CH 116</option>
+								<option value="BIO 281">BIO 281</option>
+								<option value="CE 240">CE 240</option>
+								<option value="EN 250">EN 250</option>
+								<option value="PEP 151">PEP 151</option>
+								<option value="PEP 201">PEP 201</option>
+								<option value="PEP 242">PEP 242</option>
+								<option value="PEP 336">PEP 336</option>
+								<option value="PEP 351">PEP 351</option>
+								<option value="NANO 200">NANO 200</option>
+							</select>
 							<label for="formScienceLab1">Science Lab</label>
-							<input type="text" class="form-control" id="formScienceLab1" name="formScienceLab1">
+							<select class="form-control" id="formScienceLab1" name="formScienceLab1">
+								<option value="CH 118" selected>CH 118</option>
+								<option value="BIO 282">BIO 282</option>
+								<option value="PEP 201L">PEP 201</option>
+							</select>
 							<label for="formScience2">Science Elective</label>
-							<input type="text" class="form-control" id="formScience2" name="formScience2">
+							<select class="form-control" id="formScience2" name="formScience2">
+								<option value="CH 116">CH 116</option>
+								<option value="BIO 281">BIO 281</option>
+								<option value="CE 240">CE 240</option>
+								<option value="EN 250">EN 250</option>
+								<option value="PEP 151" selected>PEP 151</option>
+								<option value="PEP 201">PEP 201</option>
+								<option value="PEP 242">PEP 242</option>
+								<option value="PEP 336">PEP 336</option>
+								<option value="PEP 351">PEP 351</option>
+								<option value="NANO 200">NANO 200</option>
+							</select>
 							<label for="formTechnical1">Technical Elective</label>
 							<input type="text" class="form-control" id="formTechnical1" name="formTechnical1">
 							<label for="formTechnical2">Technical Elective</label>
@@ -278,6 +332,8 @@
 								<input type="text" class="form-control" id="formExtra5" name="formExtra5">
 								<label for="formExtra6">Extra Class</label>
 								<input type="text" class="form-control" id="formExtra6" name="formExtra6">
+								<label for="formExtraLab1">Extra Lab</label>
+								<input type="text" class="form-control" id="formExtraLab1" name="formExtraLab1">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="formExtra1Term">Term</label>
@@ -342,6 +398,18 @@
 							</select>
 							<label for="formExtra6Term">Term</label>
 							<select class="form-control" id="formExtra6Term" name="formExtra6Term">
+								<option value="1" selected>I</option>
+								<option value="2">II</option>
+								<option value="3">III</option>
+								<option value="4">IV</option>
+								<option value="5">V</option>
+								<option value="6">VI</option>
+								<option value="7">VII</option>
+								<option value="8">VIII</option>
+								<option value="0">Taken</option>
+							</select>
+							<label for="formExtraLab1Term">Term</label>
+							<select class="form-control" id="formExtraLab1Term" name="formExtraLab1Term">
 								<option value="1" selected>I</option>
 								<option value="2">II</option>
 								<option value="3">III</option>
