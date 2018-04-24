@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
-<<<<<<< HEAD
 
 #Initial setup, delaying by 10 to obey robots.txt
 #None of the accessed URLs paths were prohibited in robots.txt
@@ -37,5 +36,3 @@ def automatedRegister(user, password, call1="",call1=2="",call3="",call4="",call
         
     time.sleep(5)
     driver.close()
-=======
->>>>>>> a8c595c0ed4785e1ae91ea33387135f361111a15
