@@ -2,9 +2,9 @@ import urllib as url
 import re
 
 def twevleToTwentyFour(hours, meridiem):
-    if (meridiem is "PM" and (hours<11)):
+    if (meridiem == "PM" and (hours<11)):
         hours = hours + 12
-    elif (meridiem is "AM" and (hours is 12)):
+    elif (meridiem == "AM" and (hours == 12)):
         hours = 0
     return hours
     
@@ -17,9 +17,9 @@ def courseScrape(key, site):
     fullList.append(key)
 
     #The HTML has an extra space for every character missing under 3
-    if re.search("[A-Z][A-Z][ ]", key):
+    if re.search("[A-Z][A-Z][ ]", key[:3]):
         key = key[:3] + " " + key[3:]
-    elif re.search("[A-Z][ ]", key):
+    elif re.search("[A-Z][ ]", key[:3]):
         key = key[:2] + "  " + key[2:]
     print key
     
@@ -32,7 +32,6 @@ def courseScrape(key, site):
         key = key[:-1]
         key = key + "[R][A-Z]"
     else:
-        #key = "(?=(?:(" + key + "(?!L)[A-Z]" + "|" + key + "[L][1-9 ]+" + "))?=(?:(" + key + "(?!R)[A-Z]" + "|" + key + "[R][1-9 ]+" +")))"
         key = "(?:(?=" + key + "(?!L)[A-Z])("+ key + "(?!R)[A-Z])" + "|" + key + "[L][1-9 ]+" + ")"
         
     found = False
@@ -102,13 +101,13 @@ def courseScrape(key, site):
     print fullList
     return fullList
 
-def addDictToCourseList(number, key, classes, dictionary):
+def addDictToCourseList(number, key, classes, dictionary, append=""):
     for x in range (1, number+1):
         try:
             term = int(dictionary[key+str(x)+"Term"])
             course = str(dictionary[key+str(x)])
             if (course):
-                classes[int(term)].append(course)
+                classes[int(term)].append(course+append)
         except:
             print "Error appending with key: " + key+str(x) + "/Term"
 
@@ -126,4 +125,4 @@ def standardizeInput(dictionary):
         dictionary[value] = dictionary[value].upper()
         dictionary[value] = dictionary[value].replace("-"," ")
 
-courseScrape("EN 250", "http://personal.stevens.edu/~gliberat/registrar/17s/17s_u.html")
+courseScrape("CPE 322", "http://personal.stevens.edu/~gliberat/registrar/17f/17f_u.html")

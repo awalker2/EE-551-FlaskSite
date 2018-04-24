@@ -41,6 +41,8 @@ def generate():
     helper.addDictToCourseList(1, "formScienceLab", classes, dictionary)
     helper.addDictToCourseList(4, "formTechnical", classes, dictionary)
     helper.addDictToCourseList(6, "formExtra", classes, dictionary)
+    helper.addDictToCourseList(1, "formExtraLab", classes, dictionary, "L")
+    helper.addDictToCourseList(1, "formExtraRec", classes, dictionary, "R")
 
     #Add in the required courses if CPE or EE
     if (major == "EE2017"):
@@ -48,9 +50,11 @@ def generate():
                      "CH 115", 1, "CH 117", 1, "E 101", 1, "E 121", 1, "E 120", 1,
                      "E 115", 1, "MA 121", 1, "CAL 103", 1,
                      "E 122", 2, "MA 123", 2, "PEP 111", 2, "CAL 105", 2, "MGT 103", 2,
-                     "MA 221", 3, "PEP 112", 3, "E 126", 3, "E 245", 3, "E 231", 3,
-                     "EE 250", 4, "E 232", 4, "E 234", 4, "CPE 390", 4, "EE 359", 4,
-                     "EE 471", 5, "E 344", 5, "E 321", 5, "E 243", 5, "EE 348", 5,
+                     "MA 221", 3,"MA 221R", 3, "PEP 112", 3, "PEP 112R", 3, "E 126", 3,
+                     "E 245", 3, "E 245L", 3,"E 231", 3,
+                     "EE 250", 4, "E 232", 4, "E 232L", 4, "E 234", 4, "E 234L", 4,
+                     "CPE 390", 4, "CPE 390L", 4, "EE 359", 4,
+                     "EE 471", 5, "E 344", 5, "E 321", 5, "E 243", 5, "E 243R", 5, "EE 348", 5,
                      "EE 345", 6, "E 355", 6, "EE 322", 6, "EE 448", 6, "IDE 400", 6,
                      "EE 465", 7, "EE 423", 7, "IDE 401", 7,
                      "EE 424", 8, "IDE 402", 8
@@ -60,9 +64,11 @@ def generate():
                      "CH 115", 1, "CH 117", 1, "E 101", 1, "E 121", 1, "E 120", 1,
                      "E 115", 1, "MA 121", 1, "CAL 103", 1,
                      "E 122", 2, "MA 123", 2, "PEP 111", 2, "CAL 105", 2, "MGT 103", 2,
-                     "MA 221", 3, "PEP 112", 3, "E 126", 3, "E 245", 3, "E 231", 3,
-                     "MA 134", 4, "E 232", 4, "E 234", 4, "CPE 360", 4, "CPE 390", 4,
-                     "EE 471", 5, "E 344", 5, "E 321", 5, "E 243", 5, "CPE 487", 5,
+                     "MA 221", 3, "MA 221R", 3, "PEP 112", 3, "PEP 112R", 3, "E 126", 3,
+                     "E 245", 3, "E 245L", 3, "E 231", 3,
+                     "MA 134", 4, "E 232", 4, "E 232L", 4, "E 234", 4, "E 234L", 4,
+                     "CPE 360", 4, "CPE 360L", 4, "CPE 390", 4,
+                     "EE 471", 5, "E 344", 5, "E 321", 5, "E 243", 5, "E 243R", 5, "CPE 487", 5,
                      "EE 345", 6, "E 355", 6, "CPE 322", 6, "CPE 462", 6, "IDE 400", 6,
                      "CPE 490", 7, "CPE 423", 7, "IDE 401", 7,
                      "CPE 424", 8, "IDE 402", 8
