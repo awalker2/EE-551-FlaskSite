@@ -16,15 +16,15 @@ def courseScrape(key, site):
     timeList = []
     fullList.append(key)
 
-    #The HTML has an extra space for every character missing under 3
+    #The HTML has an extra space for every letter missing under 3
     if re.search("[A-Z][A-Z][ ]", key[:3]):
         key = key[:3] + " " + key[3:]
     elif re.search("[A-Z][ ]", key[:3]):
         key = key[:2] + "  " + key[2:]
-    print key
+    #print key
     
-    #Non lab sections can either be xxx-123L# or xxx-123L, labs must be xxx-123L+letter
-    #Non recitation sections can either be xxx-123R# or xxx-123R, recitations must be xxx-123R+letter
+    #Non lab sections can either be xxx-123L# or xxx-123L, labs must be xxx-123L+letter for semester 3+ classes
+    #Non recitation sections can either be xxx-123R# or xxx-123R, recitations must be xxx-123R+letter for semester 3+ classes
     if  key[-1:] == "L":
         key = key[:-1]
         key = key + "[L][A-Z]"
@@ -98,7 +98,7 @@ def courseScrape(key, site):
                     elif char == 'U':
                         timeList.append(startFloat+144)
                         timeList.append(endFloat+144)
-    print fullList
+    #print fullList
     return fullList
 
 def addDictToCourseList(number, key, classes, dictionary, append=""):
@@ -107,7 +107,7 @@ def addDictToCourseList(number, key, classes, dictionary, append=""):
             term = int(dictionary[key+str(x)+"Term"])
             course = str(dictionary[key+str(x)])
             if (course):
-                classes[int(term)].append(course+append)
+                classes[int(term)].append(key[4:]+":"+course+append)
         except:
             print "Error appending with key: " + key+str(x) + "/Term"
 

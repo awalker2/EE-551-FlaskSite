@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Stevens Automation Tools</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet">
   </head>
   
   <body>
@@ -71,7 +72,7 @@
 						  <div class="form-group">
 							<label for="formSubmit">Select Classes Below - Extras Optional</label>
 							</br>
-							<button onclick= "postClasses()" type="button" class="btn btn-primary" id="formSubmit">Submit</button>
+							<button onclick= "postClasses()" type="button" class="btn btn-primary" id="formSubmit"><i id="loadingNotify" class="fa fa-spinner"></i> Submit</button>
 						  </div>
 					  </div>
 					</div>
@@ -437,6 +438,7 @@
 		function postClasses() {
 			var data = new FormData($('form')[0]);
 			alert(data)
+			$("#loadingNotify").addClass("fa-spin");
 			$.ajax({
 				url: '/generate',
 				data: data,
@@ -445,6 +447,11 @@
     			contentType: false,
 				success: function(data){
 					alert(data);
+					$("#loadingNotify").removeClass("fa-spin");
+    			},
+				error: function(){
+					alert("Error contacting server");
+					$("#loadingNotify").removeClass("fa-spin");
     			}
 			});	
 		}

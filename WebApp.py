@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import helperFunctions as helper
+import dannyHelper
 app = Flask(__name__)
         
 @app.route("/")
@@ -80,6 +81,22 @@ def generate():
     helper.addListToCourseList(classList, classes)
 
     print classes
+
+    #Clean up lists to be handled by Danny's function, then test for time conflicts
+    for x in xrange(1, 9):
+        dannyList = classes[x]
+        c = 0
+        for item in dannyList:
+            if ":" in item:
+                temp = dannyList[c].split(":")
+                dannyList[c] = temp[1]
+                c = c + 1
+        #Check for conflicts/valid classes for every term that hasn't been taken
+        if x > 2:
+            conflictCheck = dannyHelper.conCheck(dannyList, x)
+            if conflictCheck != True:
+                print conflictCheck
+                
     return "success"
     
 
