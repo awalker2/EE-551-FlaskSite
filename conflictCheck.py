@@ -13,7 +13,8 @@ def checkOneForConflict(timeList):
     #print timeListofLists
     for i in itertools.combinations(timeListofLists, r = 2):
         print i
-        if (i[0][0] <= i[1][1]) and (i[0][1] >= i[1][1]):
+        #https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap
+        if ((i[0][0] <= i[1][1]) and (i[0][1] >= i[1][1]))or(i[0][0] <= i[1][1]) and (i[1][0] <= i[0][1]):
             print "conflict"
             return "conflict"
     print "no conflict"
@@ -45,10 +46,11 @@ def checkAllForConflict(courseList, term):
         timeList = []
         for lst in combination:
             timeList = timeList + lst
+        print timeList
         if (checkOneForConflict(timeList) == "no conflict"):
             return "no conflict"
 
-checkAllForConflict(["CPE 322", "CPE 360", "CPE 390", "CPE 390"], 2)
+checkAllForConflict(["E 232", "EE 471", "CPE 390"], 2)
 
 
 
