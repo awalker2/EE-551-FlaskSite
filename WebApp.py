@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import helperFunctions as helper
 import dannyHelper
 app = Flask(__name__)
@@ -81,7 +81,18 @@ def generate():
     helper.addListToCourseList(classList, classes)
 
     print classes
+    return "test.pdf"
 
+@app.route("/pdf")
+def sendPDF():
+    fileName = request.args.get("fileName")
+    if (fileName != None and ".pdf" in fileName):
+        return send_file(fileName,attachment_filename=fileName, mimetype='application/pdf', as_attachment=True)
+    else:
+        return "Error obtaining file"
+
+   #return send_from_directory("/", "README.md")
+"""
     #Clean up lists to be handled by Danny's function, then test for time conflicts
     for x in xrange(1, 9):
         dannyList = classes[x]
@@ -96,8 +107,7 @@ def generate():
             conflictCheck = dannyHelper.conCheck(dannyList, x)
             if conflictCheck != True:
                 print conflictCheck
-                
-    return "success"
+"""     
     
 
 if __name__ == "__main__":

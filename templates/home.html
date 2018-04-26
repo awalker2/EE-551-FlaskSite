@@ -448,6 +448,10 @@
 				success: function(data){
 					alert(data);
 					$("#loadingNotify").removeClass("fa-spin");
+					if (data.indexOf("pdf") >= 0) {
+						alert("redirecting...")
+						window.location.href="/pdf?fileName=" + data;
+					}
     			},
 				error: function(){
 					alert("Error contacting server");

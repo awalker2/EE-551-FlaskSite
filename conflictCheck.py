@@ -49,8 +49,9 @@ def checkAllForConflict(courseList, term):
         print timeList
         if (checkOneForConflict(timeList) == "no conflict"):
             return "no conflict"
+    return "conflict"
 
-checkAllForConflict(["E 232", "EE 471", "CPE 390"], 2)
+print checkAllForConflict(["HLI 358", "CPE 487"], 2) 
 
 
 

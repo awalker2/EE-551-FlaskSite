@@ -6,6 +6,9 @@ import time
 #Initial setup, delaying by 10 to obey robots.txt
 #None of the accessed URLs paths were prohibited in robots.txt
 
+#One instance reference
+#https://stackoverflow.com/questions/380870/python-single-instance-of-program
+
 def automatedRegister(user, password, call1="",call1=2="",call3="",call4="",call5="",call6="",call7="",call8=""):
     delay = 10
     driver = webdriver.Chrome()

@@ -36,7 +36,8 @@ def courseScrape(key, site):
         
     found = False
     for line in data:
-        if re.search(key, line):
+        #Need to make sure key was actually found and not a cross list
+        if (re.search(key, line) and "Cross-Listed" not in line):
             found = True
             #print line
         elif "<hr width" in line and found == True:
@@ -48,7 +49,10 @@ def courseScrape(key, site):
             #Do nothing
             x = 1
         elif found == True:
-            if re.search("[0-1][0-9]:[0-6][0-9]", line):
+            #Need to not add any times for cancelled courses
+            if ("CANCELLED" in line):
+                found = False
+            elif re.search("[0-1][0-9]:[0-6][0-9]", line):
                 time = line.split()
                 #print time
                 #Get raw start and end time strings
@@ -125,4 +129,4 @@ def standardizeInput(dictionary):
         dictionary[value] = dictionary[value].upper()
         dictionary[value] = dictionary[value].replace("-"," ")
 
-#courseScrape("CPE 322", "http://personal.stevens.edu/~gliberat/registrar/17f/17f_u.html")
+print courseScrape("CPE 548", "http://personal.stevens.edu/~gliberat/registrar/18s/18s_u.html#CPE")
