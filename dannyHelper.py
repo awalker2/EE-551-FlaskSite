@@ -36,8 +36,9 @@ def conCheck(alist, term):
             else:
                 class1 = scrape.courseScrape(j,springSite)
             if len(class1) == 1:
-                return class1, " isn't offered!"
-                exit()
+                print class1, " isn't offered!"
+                return class1 + "not offered"
+                #exit()
             for i in range(1, len(class1)):
                 lS2(class1,count)#search for conflict starting at first time
                 if conflict:#if there's a conflict increment count to check next time
@@ -48,7 +49,7 @@ def conCheck(alist, term):
                 if len(schedule)/2 == len(xlist):
                     print "Final schedule: ", schedule
                     return True
-                    exit()
+                    #exit()
                 if count == (len(class1)):#delete schedule and rotate order and start again
                     count = 1
                     print "Current Schedule: ", schedule
@@ -58,7 +59,7 @@ def conCheck(alist, term):
                     #a = rotate(a,idx)
                     if count2 > len(b)-1:
                         return "Sorry no possible schedule."
-                        exit()
+                        #exit()
                     else:
                         addClasses(b[count2])
 
@@ -67,7 +68,7 @@ def conCheck(alist, term):
     #     x = raw_input("Enter a class name you'd like to add (i.e. CPE 593): ")
     #     xlist.append(x)
     # startA = xlist
-    xlist = alist
+    xlist = ("test")
     b = list(it.permutations(xlist, len(xlist)))
     addClasses(xlist, term)
     #xlist = [a for a in xlist] #turns raw input into a string of floating point values

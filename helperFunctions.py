@@ -125,4 +125,4 @@ def standardizeInput(dictionary):
         dictionary[value] = dictionary[value].upper()
         dictionary[value] = dictionary[value].replace("-"," ")
 
-courseScrape("CPE 322", "http://personal.stevens.edu/~gliberat/registrar/17f/17f_u.html")
+#courseScrape("CPE 322", "http://personal.stevens.edu/~gliberat/registrar/17f/17f_u.html")
