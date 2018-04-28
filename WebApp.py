@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, send_file
 import helperFunctions as helper
-import dannyHelper
+#import dannyHelper
+import conflictCheck
 app = Flask(__name__)
         
 @app.route("/")
@@ -12,7 +13,9 @@ def generate():
     #Check if transcript was uploaded
     transcript = request.files.get('formTranscript')
     if transcript:
-        transcript.read()
+        #for line in transcript:
+            print "test"
+        
     else:
         return "No transcript uploaded"
     data = request.form
@@ -31,6 +34,9 @@ def generate():
         if dictionary[value] == "CPE2017" or dictionary[value] == "EE2017":
             major = dictionary[value]
             print major
+        if value == "formEmail":
+            email = dictionary[value]
+            print email
 
     #Standardize the user input for courses
     helper.standardizeInput(dictionary)
@@ -53,7 +59,7 @@ def generate():
                      "E 122", 2, "MA 123", 2, "PEP 111", 2, "CAL 105", 2, "MGT 103", 2,
                      "MA 221", 3,"MA 221R", 3, "PEP 112", 3, "PEP 112R", 3, "E 126", 3,
                      "E 245", 3, "E 245L", 3,"E 231", 3,
-                     "EE 250", 4, "E 232", 4, "E 232L", 4, "E 234", 4, "E 234L", 4,
+                     "EE 250", 4, "E 232", 4, "E 232L", 4, "E 234", 4, "E 234R", 4,
                      "CPE 390", 4, "CPE 390L", 4, "EE 359", 4,
                      "EE 471", 5, "E 344", 5, "E 321", 5, "E 243", 5, "E 243R", 5, "EE 348", 5,
                      "EE 345", 6, "E 355", 6, "EE 322", 6, "EE 448", 6, "IDE 400", 6,
@@ -67,8 +73,8 @@ def generate():
                      "E 122", 2, "MA 123", 2, "PEP 111", 2, "CAL 105", 2, "MGT 103", 2,
                      "MA 221", 3, "MA 221R", 3, "PEP 112", 3, "PEP 112R", 3, "E 126", 3,
                      "E 245", 3, "E 245L", 3, "E 231", 3,
-                     "MA 134", 4, "E 232", 4, "E 232L", 4, "E 234", 4, "E 234L", 4,
-                     "CPE 360", 4, "CPE 360L", 4, "CPE 390", 4,
+                     "MA 134", 4, "E 232", 4, "E 232L", 4, "E 234", 4, "E 234R", 4,
+                     "CPE 360", 4, "CPE 390L", 4, "CPE 390", 4,
                      "EE 471", 5, "E 344", 5, "E 321", 5, "E 243", 5, "E 243R", 5, "CPE 487", 5,
                      "EE 345", 6, "E 355", 6, "CPE 322", 6, "CPE 462", 6, "IDE 400", 6,
                      "CPE 490", 7, "CPE 423", 7, "IDE 401", 7,
@@ -79,8 +85,22 @@ def generate():
 
     #Add the required courses to the list
     helper.addListToCourseList(classList, classes)
-
     print classes
+
+    #Clean up lists to be handled by conflict function, then test for time conflicts
+    for x in xrange(1, 9):
+        dannyList = classes[x]
+        c = 0
+        for item in dannyList:
+            if ":" in item:
+                temp = dannyList[c].split(":")
+                dannyList[c] = temp[1]
+                c = c + 1
+        #Check for conflicts/valid classes for every term that hasn't been taken
+        if x > 2:
+            #check = conflictCheck.checkAllForConflict(dannyList, x)
+            print "checking for conflicts"
+    
     return "test.pdf"
 
 @app.route("/pdf")
