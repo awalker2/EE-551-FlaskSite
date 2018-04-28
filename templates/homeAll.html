@@ -1,4 +1,32 @@
-{% include "header.html" %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stevens Automation Tools</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet">
+  </head>
+  
+  <body>
+	<nav class="navbar navbar-default navbar-dark bg-dark navbar-custom navbar-expand-lg">
+		<a class="navbar-brand"><h3 class="text-light">Stevens Automation Tools</h3></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+			  <a class="nav-link" href="/"> Study Plan Generator <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="/home"> Automated Register <span class="sr-only">(current)</span></a>
+			</li>
+		  </ul>
+		</div>
+	  </nav>
+	
 	</br>
 	<form id="form1">
 		<div class="container">    
@@ -409,15 +437,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script>
-		$( document ).ready(function() {
-			$("#home").addClass("active");
-		});
-		
 		function postClasses() {
-			$("#loadingNotify").addClass("fa-spin");
-			$("#formSubmit").prop("disabled", true);
 			var data = new FormData($('form')[0]);
-			
+			alert(data)
+			$("#loadingNotify").addClass("fa-spin");
 			$.ajax({
 				url: '/generate',
 				data: data,
@@ -427,7 +450,6 @@
 				success: function(data){
 					alert(data);
 					$("#loadingNotify").removeClass("fa-spin");
-					$("#formSubmit").prop("disabled", false);
 					if (data.indexOf("pdf") >= 0) {
 						alert("redirecting...")
 						window.location.href="/pdf?fileName=" + data;
@@ -436,9 +458,9 @@
 				error: function(){
 					alert("Error contacting server");
 					$("#loadingNotify").removeClass("fa-spin");
-					$("#formSubmit").removeClass("disabled");
     			}
 			});	
 		}
 	</script>
- {% include "footer.html" %}
+  </body>
+</html>

@@ -8,6 +8,10 @@ app = Flask(__name__)
 def main():
     return render_template('home.html')
 
+@app.route("/register")
+def register():
+    return render_template('register.html')
+
 @app.route('/generate', methods = ['POST'])
 def generate():
     #Check if transcript was uploaded
@@ -87,21 +91,27 @@ def generate():
     helper.addListToCourseList(classList, classes)
     print classes
 
-    #Clean up lists to be handled by conflict function, then test for time conflicts
+    #Clean up lists to be handled by conflict function, then test for time conflicts/bad input
+    errorString = ""
     for x in xrange(1, 9):
-        dannyList = classes[x]
+        checkList = classes[x]
         c = 0
-        for item in dannyList:
+        for item in checkList:
             if ":" in item:
-                temp = dannyList[c].split(":")
-                dannyList[c] = temp[1]
+                temp = checkList[c].split(":")
+                checkList[c] = temp[1]
                 c = c + 1
         #Check for conflicts/valid classes for every term that hasn't been taken
         if x > 2:
-            #check = conflictCheck.checkAllForConflict(dannyList, x)
-            print "checking for conflicts"
-    
-    return "test.pdf"
+            check = conflictCheck.checkAllForConflict(checkList, x)
+            if (check != "no conflict"):
+                errorString = errorString + "Term: " + str(x) + ":\n" + check
+
+    #Either return the pdf file or return a string with a list of potential issues
+    if (errorString != ""):
+        return errorString
+    else:
+        return "test.pdf"
 
 @app.route("/pdf")
 def sendPDF():
@@ -110,25 +120,13 @@ def sendPDF():
         return send_file(fileName,attachment_filename=fileName, mimetype='application/pdf', as_attachment=True)
     else:
         return "Error obtaining file"
+   
+@app.route('/snipe', methods = ['POST'])
+def snipe():
+    data = request.form
 
-   #return send_from_directory("/", "README.md")
-"""
-    #Clean up lists to be handled by Danny's function, then test for time conflicts
-    for x in xrange(1, 9):
-        dannyList = classes[x]
-        c = 0
-        for item in dannyList:
-            if ":" in item:
-                temp = dannyList[c].split(":")
-                dannyList[c] = temp[1]
-                c = c + 1
-        #Check for conflicts/valid classes for every term that hasn't been taken
-        if x > 2:
-            conflictCheck = dannyHelper.conCheck(dannyList, x)
-            if conflictCheck != True:
-                print conflictCheck
-"""     
-    
+    #Function to snipe with desired courses and stuff
+    return "success"
 
 if __name__ == "__main__":
     app.run()

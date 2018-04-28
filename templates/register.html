@@ -1,0 +1,82 @@
+{% include "header.html" %}
+	</br>
+	<form id="form1">
+		<div class="container">    
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<div class="card">
+					  <div class="card-header">
+						<h4>Registration Sniper</h4>
+					  </div>
+					  <div class="card-body card-longer">
+						<h5 class="card-title">Top of the Hour Registration</h5>
+						  <div class="form-group">
+							<label for="formUser">Username</label>
+							<input type="text" class="form-control" id="formUser" name="formUser">
+							<label for="formPass">Password</label>
+							<input type="password" class="form-control" id="formPass" name="formPass">
+							<label for="Call1">Call Numbers</label>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<input type="text" class="form-control" id="formCall1" name="formCall1">
+									<input type="text" class="form-control" id="formCall2" name="formCall2">
+									<input type="text" class="form-control" id="formCall3" name="formCall3">
+									<input type="text" class="form-control" id="formCall4" name="formCall4">
+									<input type="text" class="form-control" id="formCall5" name="formCall5">
+								</div>
+							<div class="form-group col-md-6">
+									<input type="text" class="form-control" id="formCall6" name="formCall5">
+									<input type="text" class="form-control" id="formCall7" name="formCall1">
+									<input type="text" class="form-control" id="formCall8" name="formCall2">
+									<input type="text" class="form-control" id="formCall9" name="formCall3">
+									<input type="text" class="form-control" id="formCall10" name="formCall4">	
+							</div>
+							</div>
+							<button onclick= "postCalls()" type="button" class="btn btn-primary" id="formSubmit2"><i id="loadingNotify2" class="fa fa-spinner"></i> Submit</button>
+						  
+						  </div>
+					  </div>
+					</div>
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</form>
+	<footer class="footer">
+		</br>
+		<div class="text-center">Created by Danny Pinto, David Heale, Gina Schnecker, and Alex Walker</div>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script>
+		$( document ).ready(function() {
+			$("#register").addClass("active");
+		});
+		
+		function postCalls() {
+			$("#loadingNotify2").addClass("fa-spin");
+			$("#formSubmit2").prop("disabled", true);
+			var data = new FormData($('form')[0]);
+			
+			$.ajax({
+				url: '/snipe',
+				data: data,
+				type: 'POST',
+				processData: false,
+    			contentType: false,
+				success: function(data){
+					alert(data);
+					$("#loadingNotify2").removeClass("fa-spin");
+					$("#formSubmit2").prop("disabled", false);
+    			},
+				error: function(){
+					alert("Error contacting server");
+					$("#loadingNotify2").removeClass("fa-spin");
+					$("#formSubmit2").removeClass("disabled");
+    			}
+			});	
+		}
+	</script>
+ {% include "footer.html" %}

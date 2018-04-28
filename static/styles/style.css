@@ -17,7 +17,11 @@ body {
 }
 
 .card-body {
-	height: 175px;
+	height: 250px;
+}
+
+.card-longer {
+	height: 500px;
 }
 
 .navbar-custom {

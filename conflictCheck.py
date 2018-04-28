@@ -18,6 +18,8 @@ def checkOneForConflict(timeList):
     return "no conflict"
 
 def checkAllForConflict(courseList, term):
+    errorString = ""
+    
     print "Checking term " + str(term) + " for conflicts..." 
     #Check whether it is a Spring of Fall term
     fallSite = "http://personal.stevens.edu/~gliberat/registrar/18f/18f_u.html"
@@ -35,22 +37,25 @@ def checkAllForConflict(courseList, term):
         #A list with one element means the course does not exist in the term
         if len(lst) == 1:
             #print str(lst[0]) + " does not exist in the selected term"
-            return str(lst[0]) + " does not exist in the selected term"
-        del lst[0]
-        #Combine the start and end times into a list
-        index = 0
-        #print lst
-        for subLst in lst:
+            errorString = errorString + str(lst[0]) + " does not exist in the selected term\n"
+        else:
+            del lst[0]
+            #Combine the start and end times into a list
             index = 0
-            for i in xrange(0, len(subLst), 2):
-                tempLst = [subLst[index], subLst[index+1]]
-                subLst.append(tempLst)
-                index = index + 2
-            for i in xrange(0, index):
-                del subLst[0]
-        #print lst
-        masterList.append(lst)
-            
+            #print lst
+            for subLst in lst:
+                index = 0
+                for i in xrange(0, len(subLst), 2):
+                    tempLst = [subLst[index], subLst[index+1]]
+                    subLst.append(tempLst)
+                    index = index + 2
+                for i in xrange(0, index):
+                    del subLst[0]
+            #print lst
+            masterList.append(lst)
+    if (errorString != ""):
+        return errorString
+    
     #Generate cartesian products for every course combination
     for combination in itertools.product(*masterList):
         timeList = []
@@ -60,10 +65,10 @@ def checkAllForConflict(courseList, term):
         checkOneForConflict(timeList)
         if (checkOneForConflict(timeList) == "no conflict"):
             return "no conflict"
-    return "conflict"
+    return "conflict\n"
 
-#print checkAllForConflict(["MA 221", "CAL 103","MA 221R", "PEP 112", "PEP 112R", "E 126", "E 245", "E 245L", "E 231", "CAL 105", "CPE 462","CPE 462"], 2)
-
+#print checkAllForConflict(["MA 221", "MA 221R", "PEP 112", "PEP 112R", "E 126", "E 245", "E 245L", "E 231", "CAL 105", "CPE 462","CPE 462"], 2)
+#print checkAllForConflict(["CPE 4362","CPE33 462"], 2)
 
 
 
