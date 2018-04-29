@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, send_file
 import helperFunctions as helper
 #import dannyHelper
 import conflictCheck
+from subprocess import check_output
+
 app = Flask(__name__)
         
 @app.route("/")
@@ -124,9 +126,15 @@ def sendPDF():
 @app.route('/snipe', methods = ['POST'])
 def snipe():
     data = request.form
-
-    #Function to snipe with desired courses and stuff
-    return "success"
+    #Try to run the registration script, not running means another instance already or bad crecentials
+    try:
+        check_output(["python","seleniumRegister.py", data["formUser"], data["formPass"], data["formCall1"], data["formCall2"],
+                    data["formCall3"], data["formCall4"], data["formCall5"], data["formCall6"], data["formCall7"],
+                    data["formCall8"], data["formCall9"], data["formCall10"]])
+    except:
+            return "Unable to register for classes - another current user or wrong credentials"
+    return "Registration Attempted"
+        
 
 if __name__ == "__main__":
     app.run()
