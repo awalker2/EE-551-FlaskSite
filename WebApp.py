@@ -16,7 +16,6 @@ def register():
 
 @app.route('/generate', methods = ['POST'])
 def generate():
-
     #Check if transcript was uploaded and take in user data
     transcript = request.files.get('formTranscript')
     if transcript:
@@ -28,7 +27,7 @@ def generate():
             currentTerm = int(termTemp[1])
             del transcriptList[-1]
             #print currentTerm
-            #print transcriptList
+            print transcriptList
         else:
             return "Please upload transcript in .txt format"   
     else:
@@ -41,9 +40,10 @@ def generate():
         x = []
         classes.append(x)
     
-    #Set up a dictionary containing all classes desired
+    #Set up a dictionary containing all classes desired, and get email and major
     dictionary = {}
-    major = None
+    major = ""
+    email = ""
     for value in data:
         dictionary[value] = data[value]
         if dictionary[value] == "CPE2017" or dictionary[value] == "EE2017":
@@ -130,6 +130,7 @@ def generate():
         return errorString
     else:
         return "test.pdf"
+        #pdfGenerate(transcriptList, classes)
 
 @app.route("/pdf")
 def sendPDF():
