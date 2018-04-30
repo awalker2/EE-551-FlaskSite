@@ -27,15 +27,15 @@ def generate():
             termTemp = termTemp.split(": ")
             currentTerm = int(termTemp[1])
             del transcriptList[-1]
-            print currentTerm
-            print transcriptList
+            #print currentTerm
+            #print transcriptList
         else:
             return "Please upload transcript in .txt format"   
     else:
         return "No transcript uploaded"
     data = request.form
 
-    #Set up lists within a list for 9 semesters, semester 0 was going to be used for taken already, but now is not
+    #Set up lists within a list for 9 semesters, semester 0 may be used in the future for AP credits
     classes = []
     for x in range (0, 9):
         x = []
@@ -57,10 +57,10 @@ def generate():
     if not (email != ""):
         return "Please enter an email"
 
-    #Standardize the user input for courses
+    #Standardize the user input for courses - all upper case and replace "-" with " "
     helper.standardizeInput(dictionary)
 
-    #Use function to add all courses to the list
+    #Use function to add all courses to the list, append L or R if lab or recitation
     helper.addDictToCourseList(4, "formHumanity", classes, dictionary)
     helper.addDictToCourseList(2, "formGeneral", classes, dictionary)
     helper.addDictToCourseList(2, "formScience", classes, dictionary)
@@ -142,7 +142,7 @@ def sendPDF():
 @app.route('/snipe', methods = ['POST'])
 def snipe():
     data = request.form
-    #Try to run the registration script, not running means another instance already or bad crecentials
+    #Try to run the registration script, not running means another instance already or bad credentials
     try:
         check_output(["python","seleniumRegister.py", data["formUser"], data["formPass"], data["formCall1"], data["formCall2"],
                     data["formCall3"], data["formCall4"], data["formCall5"], data["formCall6"], data["formCall7"],
