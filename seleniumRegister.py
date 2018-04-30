@@ -1,3 +1,4 @@
+#Only one instance allowed to prevent too many requests to stevens site
 #https://stackoverflow.com/questions/380870/python-single-instance-of-program
 from tendo import singleton
 me = singleton.SingleInstance() # will sys.exit(-1) if other instance is running

@@ -5,6 +5,7 @@ html {
 
 body {
     margin: 0 0 123px;
+	background-color: rgb(235, 235, 235) !important;
 }
 
 .footer {
@@ -24,8 +25,12 @@ body {
 	height: 500px;
 }
 
+.dark-header {
+	background-color: rgb(182, 182, 182) !important;
+}
+
 .navbar-custom {
-	background-color: rgb(194, 56, 56) !important;
+	background-color: rgb(180, 50, 70) !important;
 }
 
 

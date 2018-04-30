@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, send_file
 import helperFunctions as helper
-#import dannyHelper
 import conflictCheck
+import davidHelper as transcriptFunctions
 from subprocess import check_output
 
 app = Flask(__name__)
@@ -16,17 +16,26 @@ def register():
 
 @app.route('/generate', methods = ['POST'])
 def generate():
-    #Check if transcript was uploaded
+
+    #Check if transcript was uploaded and take in user data
     transcript = request.files.get('formTranscript')
     if transcript:
-        #for line in transcript:
-            print "test"
-        
+        transcriptList = transcriptFunctions.scrapeTranscript(transcript)
+        #If a valid file is uploaded, get the current term
+        if len(transcriptList) > 1:
+            termTemp = transcriptList[-1]
+            termTemp = termTemp.split(": ")
+            currentTerm = int(termTemp[1])
+            del transcriptList[-1]
+            print currentTerm
+            print transcriptList
+        else:
+            return "Please upload transcript in .txt format"   
     else:
         return "No transcript uploaded"
     data = request.form
 
-    #Set up lists within a list for 9 semesters, semester 0 is taken already
+    #Set up lists within a list for 9 semesters, semester 0 was going to be used for taken already, but now is not
     classes = []
     for x in range (0, 9):
         x = []
@@ -43,6 +52,10 @@ def generate():
         if value == "formEmail":
             email = dictionary[value]
             print email
+
+    #Check if an email was entered
+    if not (email != ""):
+        return "Please enter an email"
 
     #Standardize the user input for courses
     helper.standardizeInput(dictionary)
@@ -102,9 +115,12 @@ def generate():
             if ":" in item:
                 temp = checkList[c].split(":")
                 checkList[c] = temp[1]
-                c = c + 1
+            #No IDE classes have times yet, can't check for conflict with current Stevens data
+            if "IDE " in item:
+                del checkList[c]
+            c = c + 1
         #Check for conflicts/valid classes for every term that hasn't been taken
-        if x > 2:
+        if (x > 2 and x > currentTerm):
             check = conflictCheck.checkAllForConflict(checkList, x)
             if (check != "no conflict"):
                 errorString = errorString + "Term: " + str(x) + ":\n" + check
