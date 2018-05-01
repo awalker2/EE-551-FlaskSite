@@ -10,7 +10,7 @@ Below are the Python Librariers and this was Python 2.7:
 	itertools
 	urllib
 	re (regex)
-	py2pdf
+	pypdf
 	reportlab
 	subprocess
 	copy
