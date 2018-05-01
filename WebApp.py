@@ -127,25 +127,25 @@ def generate():
             c = c + 1
             
         #Check for conflicts/valid classes for every term that hasn't been taken
-        #if (x > 2 and x > currentTerm):
-         #   check = conflictCheck.checkAllForConflict(checkList, x)
-          #  if (check != "no conflict"):
-           #     errorString = errorString + "Term: " + str(x) + ":\n" + check
+        if (x > 2 and x > currentTerm):
+            check = conflictCheck.checkAllForConflict(checkList, x)
+            if (check != "no conflict"):
+                errorString = errorString + "Term: " + str(x) + ":\n" + check
 
     #Either return the pdf file or return a string with a list of potential issues
     if (errorString != ""):
         return errorString
     else:
         print copyClasses1
-        print copyClasses2
-        print transcriptList
+        #print copyClasses2
+        #print transcriptList
         if major == "CPE2017":
             cpeHelper1.cpePage1(transcriptList, copyClasses1, "", "")
             cpeHelper2.cpePage2(transcriptList, copyClasses2, "", "")
         elif major == "EE2017":
             eeHelper1.eePage1(transcriptList, copyClasses1, "", "")
             eeHelper2.eePage2(transcriptList, copyClasses2, "", "")
-        return "test.pdf"
+        return "PDF sent to: " + email
         #pdfGenerate(transcriptList, classes)
 
 #Unused method to actually send PDF file through browser, email used instead
