@@ -21,7 +21,7 @@ Below are the Python Librariers and this was Python 2.7:
 To run the code, install all of the libraries and run WebApp.py with everything else in the folder.
 
 Contributions:
-Me- WebApp/interface integration with scripts and one of the conflict check algorithms
+Me- WebApp.py and conflictCheck.py (scrape classes and check for conflict)
 
 Dan Pinto- PDF email and another attempt at the conflict check
 https://github.com/danpinto97/EE551
