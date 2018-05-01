@@ -38,7 +38,7 @@ The application can be seen in action at:https://www.youtube.com/watch?v=1iK7lIM
 
 The WebApp serves as an integrator for all of the scripts. A user can either visit the study plan page or the registration page.
 
-On the study plan page, they should enter all their desired courses in xXx 123 or XxX-123 format and upload the transcript. Due to the amount of hardcoding if AP classes or semesters off were taken into account (as well as the user input required), it is assumed that they are taking core classes at the standard times, but all the electives are free to be moved around. More majors and situations may eventually be added in the future.
+On the study plan page, they should enter all their desired courses in xXx 123 or XxX-123 format and upload the transcript. Due to the amount of hardcoding if AP classes or semesters off were taken into account (as well as the user input required), it is assumed that they are taking core classes at the standard times, but all the electives are free to be moved around. More majors and situations may be added in the future.
 
 The extra lab and recitation sections are when the course has the convention LA or RA at the end of xxx-123. They will not appear on the study plan since they need to be taken with the regular course but are there for time conflict checking.
 The web app will take all the courses that a specified major needs to take, add the desired electives in, take grades from the transcript, and then check future courses for time conflicts based on data taken from the Stevens site for 2018 Fall/Spring terms.
