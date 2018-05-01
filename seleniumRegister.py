@@ -52,9 +52,9 @@ try:
     time.sleep(delay)
     driver.find_element_by_link_text('Drop and Add Classes').click()
     #Open the page to add and drop at the top of the hour
-    date = datetime.datetime.now()
-    secondsLeft = (60 * (60 - date.minute) - date.second)
-    time.sleep(secondsLeft)
+    #date = datetime.datetime.now()
+    #secondsLeft = (60 * (60 - date.minute) - date.second)
+    #time.sleep(secondsLeft)
     driver.find_element_by_name("submitbutton").click()
     #Send the call numbers
     callInput = driver.find_element_by_class_name("dedefaultcenter").find_element_by_name("Callnum")

@@ -610,7 +610,7 @@ def cpePage2(transcriptList, classList, email, fileName):
         #can.drawString(275,498, ID)
         #can.drawString(420,498, classyear)
         #can.drawString(510,498, mailbox)
-        #can.drawString(575,498, email)
+        can.drawString(575,498, email)
 
         #term5
         can.drawString(40,414, EE471_term)
@@ -722,7 +722,7 @@ def cpePage2(transcriptList, classList, email, fileName):
         page.mergePage(new_pdf_p2.getPage(0))
         output.addPage(page)
         # finally, write "output" to a real file
-        outputStream = file("CPE/newpdf_p2.pdf", "wb")
+        outputStream = file("CPE/newpdf_p2"+fileName+".pdf", "wb")
         output.write(outputStream)
         outputStream.close()
 

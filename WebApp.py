@@ -6,8 +6,10 @@ import ginaEE1 as eeHelper1
 import ginaEE2 as eeHelper2
 import ginaCPE1 as cpeHelper1
 import ginaCPE2 as cpeHelper2
+import dannyHelper as emailFunctions
 from subprocess import check_output
 import copy
+import uuid
 
 app = Flask(__name__)
         
@@ -21,6 +23,8 @@ def register():
 
 @app.route('/generate', methods = ['POST'])
 def generate():
+    u = str(uuid.uuid4())
+    
     #Check if transcript was uploaded and take in user data
     transcript = request.files.get('formTranscript')
     if transcript:
@@ -127,7 +131,7 @@ def generate():
             c = c + 1
             
         #Check for conflicts/valid classes for every term that hasn't been taken
-        if (x > 2 and x > currentTerm):
+        if (x > 2 and x >= currentTerm):
             check = conflictCheck.checkAllForConflict(checkList, x)
             if (check != "no conflict"):
                 errorString = errorString + "Term: " + str(x) + ":\n" + check
@@ -139,16 +143,23 @@ def generate():
         print copyClasses1
         #print copyClasses2
         #print transcriptList
+        #print str(uuid)
+        #print uuid
         if major == "CPE2017":
-            cpeHelper1.cpePage1(transcriptList, copyClasses1, "", "")
-            cpeHelper2.cpePage2(transcriptList, copyClasses2, "", "")
+            cpeHelper1.cpePage1(transcriptList, copyClasses1, email, u)
+            cpeHelper2.cpePage2(transcriptList, copyClasses2, email, u)
+            emailFunctions.sendPDF("CPE/newpdf"+u+".pdf", email)
+            emailFunctions.sendPDF("CPE/newpdf_p2"+u+".pdf", email)
         elif major == "EE2017":
-            eeHelper1.eePage1(transcriptList, copyClasses1, "", "")
-            eeHelper2.eePage2(transcriptList, copyClasses2, "", "")
+            eeHelper1.eePage1(transcriptList, copyClasses1, email, u)
+            eeHelper2.eePage2(transcriptList, copyClasses2, email, u)
+            emailFunctions.sendPDF("EE/newpdf"+u+".pdf", email)
+            emailFunctions.sendPDF("EE/newpdf_p2"+u+".pdf", email)
         return "PDF sent to: " + email
         #pdfGenerate(transcriptList, classes)
 
 #Unused method to actually send PDF file through browser, email used instead
+#This method did work, however but requiered a javascript redirect
 #@app.route("/pdf")
 #def sendPDF():
 #    fileName = request.args.get("fileName")

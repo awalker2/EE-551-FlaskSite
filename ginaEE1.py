@@ -587,19 +587,21 @@ def eePage1(transcriptList, classList, email, fileName):
 
         packet = StringIO.StringIO()
         # taking in inputs
-        name="Gina Schnecker"
-        ID="10300000"
-        classyear="2018"
-        mailbox="18-16"
-        email= "gschneck@stevens.edu"
-        spring1= "S17"
-        term3_hum="first elective"
-        term4_hum="second elective"
-        scienceelective="science"
-        sciencelab="laboratory"
-        grade1="A"
+##        name="Gina Schnecker"
+##        ID="10300000"
+##        classyear="2018"
+##        mailbox="18-16"
+##        email= "gschneck@stevens.edu"
+##        spring1= "S17"
+##        term3_hum="first elective"
+##        term4_hum="second elective"
+##        scienceelective="science"
+##        sciencelab="laboratory"
+##        grade1="A"
 
         can = canvas.Canvas(packet, pagesize=letter)
+
+        can.drawString(525,505, email)
 
         #term1 terms
         can.drawString(40,400, CH115_term)
@@ -696,7 +698,7 @@ def eePage1(transcriptList, classList, email, fileName):
         page.mergePage(new_pdf.getPage(0))
         output.addPage(page)
         # finally, write "output" to a real file
-        outputStream = file("EE/newpdf.pdf", "wb")
+        outputStream = file("EE/newpdf"+fileName+".pdf", "wb")
         output.write(outputStream)
         outputStream.close()
 

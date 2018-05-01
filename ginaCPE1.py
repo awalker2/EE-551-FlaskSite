@@ -589,17 +589,17 @@ def cpePage1(transcriptList, classList, email, fileName):
 
         packet = StringIO.StringIO()
         # taking in inputs
-        name="Gina Schnecker"
-        ID="10300000"
-        classyear="2018"
-        mailbox="18-16"
-        email= "gschneck@stevens.edu"
-        spring1= "S17"
-        term3_hum="first elective"
-        term4_hum="second elective"
-        scienceelective="science"
-        sciencelab="laboratory"
-        grade1="A"
+##        name="Gina Schnecker"
+##        ID="10300000"
+##        classyear="2018"
+##        mailbox="18-16"
+##        email= "gschneck@stevens.edu"
+##        spring1= "S17"
+##        term3_hum="first elective"
+##        term4_hum="second elective"
+##        scienceelective="science"
+##        sciencelab="laboratory"
+##        grade1="A"
         #term1="S17"
 
         can = canvas.Canvas(packet, pagesize=letter)
@@ -610,7 +610,7 @@ def cpePage1(transcriptList, classList, email, fileName):
         #can.drawString(255,505, ID)
         #can.drawString(385,505, classyear)
         #can.drawString(460,505, mailbox)
-        #can.drawString(525,505, email)
+        can.drawString(525,505, email)
 
         #term1 terms
         can.drawString(40,390, CH115_term)
@@ -707,8 +707,10 @@ def cpePage1(transcriptList, classList, email, fileName):
         page.mergePage(new_pdf.getPage(0))
         output.addPage(page)
         # finally, write "output" to a real file
-        outputStream = file("CPE/newpdf.pdf", "wb")
+        outputStream = file("CPE/newpdf"+fileName+".pdf", "wb")
         output.write(outputStream)
         outputStream.close()
+
+        
 
 #cpePage1(transcriptList, classList, "", "")

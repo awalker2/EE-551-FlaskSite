@@ -600,6 +600,9 @@ def eePage2(transcriptList, classList, email, fileName):
 
             can = canvas.Canvas(packet, pagesize=letter)
 
+            can.drawString(575,498, email)
+
+
             #term5
             can.drawString(40,432, EE471_term)
             can.drawString(40,422, EE348_term)
@@ -709,7 +712,7 @@ def eePage2(transcriptList, classList, email, fileName):
             page.mergePage(new_pdf_p2.getPage(0))
             output.addPage(page)
             # finally, write "output" to a real file
-            outputStream = file("EE/newpdf_p2.pdf", "wb")
+            outputStream = file("EE/newpdf_p2"+fileName+".pdf", "wb")
             output.write(outputStream)
             outputStream.close()
 

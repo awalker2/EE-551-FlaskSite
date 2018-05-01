@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.MIMEImage import MIMEImage
 import base64
 import itertools
-import walkerScrape as scrape
+#import walkerScrape as scrape
 fallSite = "http://personal.stevens.edu/~gliberat/registrar/17f/17f_u.html"
 springSite = "http://personal.stevens.edu/~gliberat/registrar/18s/18s_u.html"
 schedule = []
@@ -29,24 +29,30 @@ def sendPDF(fileName, email):
     msg['To'] = ', '.join(targets)
 
     #Source for PDF send: https://bugs.python.org/issue9040
-    fp = open(fileName, 'rb')
-    attach = MIMENonMultipart('application', 'pdf')
-    payload = base64.b64encode(fp.read()).decode('ascii')
-    attach.set_payload(payload)
-    attach['Content-Transfer-Encoding'] = 'base64'
-    fp.close()
-    attach.add_header('Content-Disposition', 'attachment', filename = 'StudyPlan.pdf')
-    msg.attach(attach)
-    #End of found fix
+    message = "Sent study plan to: " 
+    try:
+        fp = open(fileName, 'rb')
+        attach = MIMENonMultipart('application', 'pdf')
+        payload = base64.b64encode(fp.read()).decode('ascii')
+        attach.set_payload(payload)
+        attach['Content-Transfer-Encoding'] = 'base64'
+        fp.close()
+        attach.add_header('Content-Disposition', 'attachment', filename = 'StudyPlan.pdf')
+        msg.attach(attach)
+        #End of found fix
 
-    server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
-    server.login(username, password)
+        server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
+        server.login(username, password)
 
-    server.sendmail(sender, targets, msg.as_string())
+        server.sendmail(sender, targets, msg.as_string())
 
-    server.quit()
-    return "Sent study plan to: " + email
+        server.quit()
+    except:
+        message = "Error sending study plan to: "
+    return message + email
 
+#Alternate conflict algorithm
+"""
 def perm(a, t):
     global b
     b = list(itertools.permutations(a, len(a)))
@@ -115,3 +121,4 @@ def addClasses(a, t):
                 else:
                     #print "NEW PERMUTATION"
                     addClasses(b[count2], t)
+"""
