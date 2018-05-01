@@ -69,8 +69,8 @@
 							<input type="text" class="form-control" id="formGeneral1" name="formGeneral1">
 							<label for="formGeneral2">General Elective</label>
 							<input type="text" class="form-control" id="formGeneral2" name="formGeneral2">
-							<label for="formExtraRec1">Extra Recitation</label>
-							<input type="text" class="form-control" id="formExtraRec1" name="formExtraRec1">
+							<label for="formGeneral3">General Elective</label>
+							<input type="text" class="form-control" id="formGeneral3" name="formGeneral3">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="formHumanity1Term">Term</label>
@@ -128,8 +128,8 @@
 								<option value="3">III</option>
 								<option value="4">IV</option>
 								<option value="5">V</option>
-								<option value="6">VI</option>
-								<option value="7" selected>VII</option>
+								<option value="6" selected>VI</option>
+								<option value="7" >VII</option>
 								<option value="8">VIII</option>
 								<!--<option value="0">Taken</option>!-->
 							</select>
@@ -141,20 +141,20 @@
 								<option value="4">IV</option>
 								<option value="5">V</option>
 								<option value="6">VI</option>
-								<option value="7">VII</option>
-								<option value="8" selected>VIII</option>
+								<option value="7" selected>VII</option>
+								<option value="8" >VIII</option>
 								<!--<option value="0">Taken</option>!-->
 							</select>
-							<label for="formExtraRec1Term">Term</label>
-							<select class="form-control" id="formExtraRec1Term" name="formExtraRec1Term">
-								<option value="1" selected>I</option>
+							<label for="formGeneral3Term">Term</label>
+							<select class="form-control" id="formGeneral3Term" name="formGeneral3Term">
+								<option value="1" >I</option>
 								<option value="2">II</option>
 								<option value="3">III</option>
 								<option value="4">IV</option>
 								<option value="5">V</option>
 								<option value="6">VI</option>
 								<option value="7">VII</option>
-								<option value="8">VIII</option>
+								<option value="8" selected>VIII</option>
 								<!--<option value="0">Taken</option>!-->
 							</select>
 						</div>
@@ -303,10 +303,10 @@
 								<input type="text" class="form-control" id="formExtra3" name="formExtra3">
 								<label for="formExtra4">Extra Class</label>
 								<input type="text" class="form-control" id="formExtra4" name="formExtra4">
+								<label for="formExtraRec1">Extra Recitation</label>
+								<input type="text" class="form-control" id="formExtraRec1" name="formExtraRec1">
 								<label for="formExtraRec2">Extra Recitation</label>
 								<input type="text" class="form-control" id="formExtraRec2" name="formExtraRec2">
-								<label for="formExtraRec3">Extra Recitation</label>
-								<input type="text" class="form-control" id="formExtraRec3" name="formExtraRec3">
 								<label for="formExtraLab1">Extra Lab</label>
 								<input type="text" class="form-control" id="formExtraLab1" name="formExtraLab1">
 						</div>
@@ -359,6 +359,18 @@
 								<option value="8">VIII</option>
 								<!--<option value="0">Taken</option>!-->
 							</select>
+							<label for="formExtraRec1Term">Term</label>
+							<select class="form-control" id="formExtraRec1Term" name="formExtraRec1Term">
+								<option value="1">I</option>
+								<option value="2">II</option>
+								<option value="3">III</option>
+								<option value="4">IV</option>
+								<option value="5">V</option>
+								<option value="6">VI</option>
+								<option value="7">VII</option>
+								<option value="8">VIII</option>
+								<!--<option value="0">Taken</option>!-->
+							</select>
 							<label for="formExtraRec2Term">Term</label>
 							<select class="form-control" id="formExtraRec2Term" name="formExtraRec2Term">
 								<option value="1">I</option>
@@ -371,21 +383,9 @@
 								<option value="8">VIII</option>
 								<!--<option value="0">Taken</option>!-->
 							</select>
-							<label for="formExtraRec3Term">Term</label>
-							<select class="form-control" id="formExtraRec3Term" name="formExtraRec3Term">
-								<option value="1" selected>I</option>
-								<option value="2">II</option>
-								<option value="3">III</option>
-								<option value="4">IV</option>
-								<option value="5">V</option>
-								<option value="6">VI</option>
-								<option value="7">VII</option>
-								<option value="8">VIII</option>
-								<!--<option value="0">Taken</option>!-->
-							</select>
 							<label for="formExtraLab1Term">Term</label>
 							<select class="form-control" id="formExtraLab1Term" name="formExtraLab1Term">
-								<option value="1" selected>I</option>
+								<option value="1">I</option>
 								<option value="2">II</option>
 								<option value="3">III</option>
 								<option value="4">IV</option>
@@ -428,10 +428,11 @@
 					alert(data);
 					$("#loadingNotify").removeClass("fa-spin");
 					$("#formSubmit").prop("disabled", false);
-					if (data.indexOf("pdf") >= 0) {
-						alert("redirecting...")
-						window.location.href="/pdf?fileName=" + data;
-					}
+					//Javascript if download PDF function implemented
+					//if (data.indexOf("pdf") >= 0) {
+					//	alert("redirecting...")
+					//	window.location.href="/pdf?fileName=" + data;
+					//}
     			},
 				error: function(){
 					alert("Error contacting server");

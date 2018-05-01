@@ -24,6 +24,10 @@ classList = [[],
              ['Technical:TECH1', 'Technical:TECH2', 'CPE 490', 'CPE 423', 'IDE 401'],
              ['Humanity:HUM4', 'Technical:TECH3', 'Technical:TECH4', 'CPE 424', 'IDE 402']
             ]
+science1= " "
+sci1=False
+science2= " "
+sci2=False
 
 #Change the data structure for each course to [type, course, grade]
 for semester in classList:
@@ -49,6 +53,34 @@ for semester in classList:
                     clss[2] = gradeArray[1]
 
 print classList
+
+def writeTerm(term, firstTerm):
+	if term%2==1:
+		firstChar="F"	
+	else:
+		firstChar="S"
+	currentTerm=firstTerm
+	for x in xrange(0,term,+2):
+		currentTerm=currentTerm+1
+	return firstChar + str(currentTerm)
+    
+for semester in classList:
+    for clss in semester:
+        if clss[0] == "Science" and sci1 is False:
+            science1=clss[1]
+            science1Grade=clss[2]
+            sci1=True
+        elif clss[0] == "Science" and sci2 is False:
+            science2=clss[1]
+            science2Grade=clss[2]
+            sci2=True
+
+print science1
+print science2
+print science1Grade
+print science2Grade
+
+
 
 
                 
