@@ -32,7 +32,7 @@ call10 = sys.argv[12]
 
 
 #Set the delay and open webdriver
-delay = 1
+delay = 10
 driver = webdriver.Chrome()
 
 try:
@@ -51,7 +51,7 @@ try:
     #Go to drop and add classes
     time.sleep(delay)
     driver.find_element_by_link_text('Drop and Add Classes').click()
-    #Open the page to add and drop at the top of the hour
+    #Open the page to add and drop at the top of the hour - taken out for demo
     #date = datetime.datetime.now()
     #secondsLeft = (60 * (60 - date.minute) - date.second)
     #time.sleep(secondsLeft)
