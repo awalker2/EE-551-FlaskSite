@@ -16,7 +16,7 @@ Below are the Python Librariers and this was Python 2.7:
 	copy
 	uuid
 	selenium
-	tend
+	tendo
 
 To run the code, install all of the libraries and run WebApp.py with everything else in the folder.
 
@@ -32,11 +32,11 @@ https://github.com/dhelale1/EE-551
 Gina Schnecker- Python lists to write to PDF
 https://github.com/ginaschnecker/EE551-Project
 
-The application can be seen in action at:
+The application can be seen in action at:https://www.youtube.com/watch?v=1iK7lIMIT_A
 
-The WebApp servers as an integrator for all of the scripts. A user can either visit the study plan page or the registration page.
+The WebApp serves as an integrator for all of the scripts. A user can either visit the study plan page or the registration page.
 
-On the study plan page, they should enter all their desired courses in xXx 123 or XxX-123 format and upload the transcript. Due to the amount of hardcoding if AP classes or semesters off were taken into account, it is assumed that they are taking core classes at the standard times, but all the electives are free to be moved around. More majors and situations may eventually be added in the future.
+On the study plan page, they should enter all their desired courses in xXx 123 or XxX-123 format and upload the transcript. Due to the amount of hardcoding if AP classes or semesters off were taken into account (as well as the user input required), it is assumed that they are taking core classes at the standard times, but all the electives are free to be moved around. More majors and situations may eventually be added in the future.
 
 The extra lab and recitation sections are when the course has the convention LA or RA at the end of xxx-123. They will not appear on the study plan since they need to be taken with the regular course.
 The web app will take all the courses that a specified major needs to take, add the desired electives in, take grades from the transcript, and then check future courses for time conflicts based on data
