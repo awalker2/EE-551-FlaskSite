@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    margin: 0 0 123px;
+    margin: 0 0 90px;
 	background-color: rgb(235, 235, 235) !important;
 }
 
@@ -18,11 +18,11 @@ body {
 }
 
 .card-body {
-	height: 250px;
+	height: 218px;
 }
 
 .card-longer {
-	height: 500px;
+	height: 400px;
 }
 
 .dark-header {

@@ -66,9 +66,9 @@ def generate():
     helper.addDictToCourseList(2, "formScience", classes, dictionary)
     helper.addDictToCourseList(1, "formScienceLab", classes, dictionary)
     helper.addDictToCourseList(4, "formTechnical", classes, dictionary)
-    helper.addDictToCourseList(6, "formExtra", classes, dictionary)
+    helper.addDictToCourseList(4, "formExtra", classes, dictionary)
     helper.addDictToCourseList(1, "formExtraLab", classes, dictionary, "L")
-    helper.addDictToCourseList(1, "formExtraRec", classes, dictionary, "R")
+    helper.addDictToCourseList(3, "formExtraRec", classes, dictionary, "R")
 
     #Add in the required courses if CPE or EE
     if (major == "EE2017"):

@@ -5,6 +5,7 @@ me = singleton.SingleInstance() # will sys.exit(-1) if other instance is running
 
 import sys
 import time
+import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -31,7 +32,7 @@ call10 = sys.argv[12]
 
 
 #Set the delay and open webdriver
-delay = 10
+delay = 1
 driver = webdriver.Chrome()
 
 try:
@@ -50,15 +51,19 @@ try:
     #Go to drop and add classes
     time.sleep(delay)
     driver.find_element_by_link_text('Drop and Add Classes').click()
-    #Open the page to add and drop
-    time.sleep(delay)
+    #Open the page to add and drop at the top of the hour
+    date = datetime.datetime.now()
+    secondsLeft = (60 * (60 - date.minute) - date.second)
+    time.sleep(secondsLeft)
     driver.find_element_by_name("submitbutton").click()
     #Send the call numbers
-    time.sleep(delay)
     callInput = driver.find_element_by_class_name("dedefaultcenter").find_element_by_name("Callnum")
     callInput.send_keys(call1 + Keys.TAB + call2 + Keys.TAB +call3 + Keys.TAB +call4 + Keys.TAB +call5 +
                     Keys.TAB +call6 + Keys.TAB +call7 + Keys.TAB +call8 + Keys.TAB+call9 + Keys.TAB
                     +call10 + Keys.TAB)
+                    #Actually submits it
+                    #+Keys.ENTER)
+    time.sleep(5)
     driver.close()
 except:
     driver.close()
