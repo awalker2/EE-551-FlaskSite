@@ -1,5 +1,6 @@
 # EE551-FlaskSite
-Stevens Automatic Study Plan Generator Web Interface and Automated Registration
+
+Stevens Institute of Technology Automatic Study Plan Generator Web Interface and Automated Registration
 
 This is a web interface and serverside code for a study plan validator/checker and automated course registration.
 The interface was done using Bootstrap 4 and jQuery for the ajax post to the server. 
