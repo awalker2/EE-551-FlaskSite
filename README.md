@@ -23,7 +23,7 @@ Installed-
 To run the code, install all of the libraries and run WebApp.py with everything else in the folder.
 
 Contributions:
-Me- WebApp.py and conflictCheck.py (scrape classes and check for conflict)
+Me- WebApp.py and ConflictCheck.py (scrape classes and check for conflict)
 
 Dan Pinto- PDF email and another attempt at the conflict check
 https://github.com/danpinto97/EE551
