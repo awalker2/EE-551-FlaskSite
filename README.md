@@ -47,4 +47,4 @@ If the study plan had no conflicts or not found future classes, a email will be 
 
 The user may also use the registration automated page to enter call numbers with their Stevens credentials and the server will use selenium to attempt registration. An error message will be returned if something went wrong aside from the course being full or not able to be added.
 
-I wrote the selenium script mostly for fun, but some of the practicality may be an issue due to robots.txt on my.Stevens.edu. I locked it down to only one instance of the script allowed using tendo and delayed some of the commands. The commented out lines will actually make it attempt registration at the top of the hour (or bottom of next hour). It also does not currently access any prohibited URLs.
+I wrote the selenium script mostly for fun, but modified it to prevent abusing the site. I locked it down to only one instance of the script allowed using tendo and delayed some of the commands. The commented out lines will actually make it attempt registration at the top of the hour (or bottom of next hour).
