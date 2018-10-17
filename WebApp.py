@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, send_file
-import helperFunctions as helper
-import conflictCheck
-import davidHelper as transcriptFunctions
-import ginaEE1 as eeHelper1
-import ginaEE2 as eeHelper2
-import ginaCPE1 as cpeHelper1
-import ginaCPE2 as cpeHelper2
-import dannyHelper as emailFunctions
+import HelperFunctions as Helper
+import ConflictCheck
+import DavidHelper as TranscriptFunctions
+import GinaEE1 as eeHelper1
+import GinaEE2 as eeHelper2
+import GinaCPE1 as cpeHelper1
+import GinaCPE2 as cpeHelper2
+import DannyHelper as EmailFunctions
 from subprocess import check_output
 import copy
 import uuid
@@ -28,7 +28,7 @@ def generate():
     #Check if transcript was uploaded and take in user data
     transcript = request.files.get('formTranscript')
     if transcript:
-        transcriptList = transcriptFunctions.scrapeTranscript(transcript)
+        transcriptList = TranscriptFunctions.scrapeTranscript(transcript)
         #If a valid file is uploaded, get the current term
         if len(transcriptList) > 1:
             termTemp = transcriptList[-1]
@@ -63,21 +63,21 @@ def generate():
             print email
 
     #Check if an email was entered
-    if not (email != ""):
+    if (email == ""):
         return "Please enter an email"
 
     #Standardize the user input for courses - all upper case and replace "-" with " "
-    helper.standardizeInput(dictionary)
+    Helper.standardizeInput(dictionary)
 
     #Use function to add all courses to the list, append L or R if lab or recitation
-    helper.addDictToCourseList(4, "formHumanity", classes, dictionary)
-    helper.addDictToCourseList(3, "formGeneral", classes, dictionary)
-    helper.addDictToCourseList(2, "formScience", classes, dictionary)
-    helper.addDictToCourseList(1, "formScienceLab", classes, dictionary)
-    helper.addDictToCourseList(4, "formTechnical", classes, dictionary)
-    helper.addDictToCourseList(4, "formExtra", classes, dictionary)
-    helper.addDictToCourseList(1, "formExtraLab", classes, dictionary, "L")
-    helper.addDictToCourseList(2, "formExtraRec", classes, dictionary, "R")
+    Helper.addDictToCourseList(4, "formHumanity", classes, dictionary)
+    Helper.addDictToCourseList(3, "formGeneral", classes, dictionary)
+    Helper.addDictToCourseList(2, "formScience", classes, dictionary)
+    Helper.addDictToCourseList(1, "formScienceLab", classes, dictionary)
+    Helper.addDictToCourseList(4, "formTechnical", classes, dictionary)
+    Helper.addDictToCourseList(4, "formExtra", classes, dictionary)
+    Helper.addDictToCourseList(1, "formExtraLab", classes, dictionary, "L")
+    Helper.addDictToCourseList(2, "formExtraRec", classes, dictionary, "R")
 
     #Add in the required courses if CPE or EE
     if (major == "EE2017"):
@@ -112,7 +112,7 @@ def generate():
         return "Major invalid"
 
     #Add the required courses to the list, make copies for later print function
-    helper.addListToCourseList(classList, classes)
+    Helper.addListToCourseList(classList, classes)
     copyClasses1 = copy.deepcopy(classes)
     copyClasses2 = copy.deepcopy(classes)
 
@@ -132,7 +132,7 @@ def generate():
             
         #Check for conflicts/valid classes for every term that hasn't been taken
         if (x > 2 and x >= currentTerm):
-            check = conflictCheck.checkAllForConflict(checkList, x)
+            check = ConflictCheck.checkAllForConflict(checkList, x)
             if (check != "no conflict"):
                 errorString = errorString + "Term: " + str(x) + ":\n" + check
 
@@ -148,13 +148,13 @@ def generate():
         if major == "CPE2017":
             cpeHelper1.cpePage1(transcriptList, copyClasses1, email, u)
             cpeHelper2.cpePage2(transcriptList, copyClasses2, email, u)
-            emailFunctions.sendPDF("CPE/newpdf"+u+".pdf", email)
-            emailFunctions.sendPDF("CPE/newpdf_p2"+u+".pdf", email)
+            EmailFunctions.sendPDF("CPE/newpdf"+u+".pdf", email)
+            EmailFunctions.sendPDF("CPE/newpdf_p2"+u+".pdf", email)
         elif major == "EE2017":
             eeHelper1.eePage1(transcriptList, copyClasses1, email, u)
             eeHelper2.eePage2(transcriptList, copyClasses2, email, u)
-            emailFunctions.sendPDF("EE/newpdf"+u+".pdf", email)
-            emailFunctions.sendPDF("EE/newpdf_p2"+u+".pdf", email)
+            EmailFunctions.sendPDF("EE/newpdf"+u+".pdf", email)
+            EmailFunctions.sendPDF("EE/newpdf_p2"+u+".pdf", email)
         return "PDF sent to: " + email
         #pdfGenerate(transcriptList, classes)
 
@@ -173,7 +173,7 @@ def snipe():
     data = request.form
     #Try to run the registration script, not running means another instance already or bad credentials
     try:
-        check_output(["python","seleniumRegister.py", data["formUser"], data["formPass"], data["formCall1"], data["formCall2"],
+        check_output(["python","SeleniumRegister.py", data["formUser"], data["formPass"], data["formCall1"], data["formCall2"],
                     data["formCall3"], data["formCall4"], data["formCall5"], data["formCall6"], data["formCall7"],
                     data["formCall8"], data["formCall9"], data["formCall10"]])
     except:
