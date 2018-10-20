@@ -2,10 +2,10 @@ from flask import Flask, render_template, request, send_file
 import HelperFunctions as Helper
 import ConflictCheck
 import DavidHelper as TranscriptFunctions
-import GinaEE1 as eeHelper1
-import GinaEE2 as eeHelper2
-import GinaCPE1 as cpeHelper1
-import GinaCPE2 as cpeHelper2
+import GinaEE1 as EE_Helper1
+import GinaEE2 as EE_Helper2
+import GinaCPE1 as CPE_Helper1
+import GinaCPE2 as CPE_Helper2
 import DannyHelper as EmailFunctions
 from subprocess import check_output
 import copy
@@ -146,13 +146,13 @@ def generate():
         #print str(uuid)
         #print uuid
         if major == "CPE2017":
-            cpeHelper1.cpePage1(transcriptList, copyClasses1, email, u)
-            cpeHelper2.cpePage2(transcriptList, copyClasses2, email, u)
+            CPE_Helper1.cpePage1(transcriptList, copyClasses1, email, u)
+            CPE_Helper2.cpePage2(transcriptList, copyClasses2, email, u)
             EmailFunctions.sendPDF("CPE/newpdf"+u+".pdf", email)
             EmailFunctions.sendPDF("CPE/newpdf_p2"+u+".pdf", email)
         elif major == "EE2017":
-            eeHelper1.eePage1(transcriptList, copyClasses1, email, u)
-            eeHelper2.eePage2(transcriptList, copyClasses2, email, u)
+            EE_Helper1.eePage1(transcriptList, copyClasses1, email, u)
+            EE_Helper2.eePage2(transcriptList, copyClasses2, email, u)
             EmailFunctions.sendPDF("EE/newpdf"+u+".pdf", email)
             EmailFunctions.sendPDF("EE/newpdf_p2"+u+".pdf", email)
         return "PDF sent to: " + email
