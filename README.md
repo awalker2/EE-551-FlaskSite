@@ -46,6 +46,6 @@ The web app will take all the courses that a specified major needs to take, add 
 
 If the study plan had no conflicts or not found future classes, a email will be sent with the PDF files. Otherwise, error messages by term will be sent to the user.
 
-The user may also use the registration automated page to enter call numbers with their Stevens credentials and the server will use selenium to attempt registration. An error message will be returned if something went wrong aside from the course being full or not able to be added.
+The user may also use the registration automated page to enter call numbers with their Stevens credentials and the server will use Selenium to attempt registration. An error message will be returned if something went wrong aside from the course being full or not able to be added.
 
 I wrote the Selenium script mostly for fun, but wanted to make something that would not abuse the site. I locked it down to only one instance of the script allowed using tendo and delayed some of the commands. The commented out lines will actually make it attempt registration at the top of the hour (or bottom of next hour).
